@@ -16,9 +16,9 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_universal_data']['published'] = array('Veröffentlicht', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['title_01'] = array('Textblock 1', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['title_02'] = array('Textblock 2', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['title_03'] = array('Textblock 3', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['title_01'] = array('Text 1', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['title_02'] = array('Text 2', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['title_03'] = array('Text 3', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['description_01'] = array('Beschreibung 1', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['description_02'] = array('Beschreibung 2', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['description_03'] = array('Beschreibung 3', '');

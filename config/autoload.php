@@ -12,25 +12,12 @@
 
 
 /**
- * Register the namespaces
- */
-ClassLoader::addNamespaces(array
-(
-	'Universal',
-));
-
-
-/**
  * Register the classes
  */
 ClassLoader::addClasses(array
 (
-	// Models
-	'Universal\UniversalArchiveModel' => 'system/modules/universal/models/UniversalArchiveModel.php',
-	'Universal\UniversalDataModel'    => 'system/modules/universal/models/UniversalDataModel.php',
-
 	// Modules
-	'universalList'                   => 'system/modules/universal/modules/universalList.php',
+	'universalList' => 'system/modules/universal/modules/universalList.php',
 ));
 
 
