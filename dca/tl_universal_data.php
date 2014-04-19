@@ -86,7 +86,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{text_legend},published,title_01,title_02,title_03,description_01,description_02,description_03;{image_legend},image_01,image_02;'
+        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02;{image_legend},image_01,image_02;'
     ),
     // Fields
     'fields' => array
@@ -142,7 +142,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'search' => true,
             'filter' => true,
             'inputType' => 'text',
-            'eval' => array('maxlength' => 255, 'tl_class' => 'long'),
+            'eval' => array('maxlength' => 255, 'tl_class' => 'w50'),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
         'title_02' => array
@@ -152,17 +152,47 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'search' => true,
             'filter' => true,
             'inputType' => 'text',
-            'eval' => array('maxlength' => 255, 'tl_class' => 'long'),
+            'eval' => array('maxlength' => 255, 'tl_class' => 'w50'),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
-        'title_03' => array
+
+        'url_01' => array
             (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['title_03'],
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_01'],
             'exclude' => true,
             'search' => true,
-            'filter' => true,
             'inputType' => 'text',
-            'eval' => array('maxlength' => 255, 'tl_class' => 'long'),
+            'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
+            'wizard' => array
+                (
+                array('tl_universal_data', 'pagePicker')
+            ),
+            'sql' => "varchar(255) NOT NULL default ''"
+        ),
+        'url_01' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_01'],
+            'exclude' => true,
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
+            'wizard' => array
+                (
+                array('tl_universal_data', 'pagePicker')
+            ),
+            'sql' => "varchar(255) NOT NULL default ''"
+        ),
+        'url_02' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_02'],
+            'exclude' => true,
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
+            'wizard' => array
+                (
+                array('tl_universal_data', 'pagePicker')
+            ),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
         'description_01' => array
@@ -185,22 +215,12 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'eval' => array('style' => 'height:48px', 'tl_class' => 'clr'),
             'sql' => "text NULL"
         ),
-        'description_03' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['description_03'],
-            'exclude' => true,
-            'search' => true,
-            'filter' => true,
-            'inputType' => 'textarea',
-            'eval' => array('style' => 'height:48px', 'tl_class' => 'clr'),
-            'sql' => "text NULL"
-        ),
         'image_01' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['image_01'],
             'exclude' => true,
             'inputType' => 'fileTree',
-            'eval' => array('tl_class' => 'clr', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_01', 'multiple' => true, 'fieldType' => 'checkbox'),
+            'eval' => array('tl_class' => 'long', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_01', 'multiple' => true, 'fieldType' => 'checkbox'),
             'sql' => "blob NULL"
         ),
         'orderSRC_01' => array
@@ -213,7 +233,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['image_02'],
             'exclude' => true,
             'inputType' => 'fileTree',
-            'eval' => array('tl_class' => 'clr', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_02', 'multiple' => true, 'fieldType' => 'checkbox'),
+            'eval' => array('tl_class' => 'long', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_02', 'multiple' => true, 'fieldType' => 'checkbox'),
             'sql' => "blob NULL"
         ),
         'orderSRC_02' => array
@@ -221,7 +241,8 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['orderSRC_02'],
             'sql' => "blob NULL"
         ),
-    )
+
+        )
 );
 
 /**
@@ -350,6 +371,11 @@ class tl_universal_data extends Backend
         // Update the database
         $this->Database->prepare("UPDATE tl_universal_data SET published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
                 ->execute($intId);
+    }
+
+    public function pagePicker(DataContainer $dc)
+    {
+        return ' <a href="contao/page.php?do=' . Input::get('do') . '&amp;table=' . $dc->table . '&amp;field=' . $dc->field . '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $dc->value) . '" title="' . specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) . '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' . specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])) . '\',\'url\':this.href,\'id\':\'' . $dc->field . '\',\'tag\':\'ctrl_' . $dc->field . ((Input::get('act') == 'editAll') ? '_' . $dc->id : '') . '\',\'self\':this});return false">' . Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
     }
 
 }
