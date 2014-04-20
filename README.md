@@ -6,7 +6,7 @@ Modul zum erfassen und ausgeben universellen Daten in Contao. Es können verschi
 - 2 Linkfelder
 - 2 Langtextfelder
 - 2 Dateifelder mit Mehrfachauswahl
-- 1 Seitenkategorie und 2 Universal Kategorien
+- 1 Kategorie (Seiten Filter) und 2 Kategorien (Universal)
 
 Installation
 ===
