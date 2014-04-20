@@ -86,7 +86,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02;{image_legend},image_01,image_02;'
+        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02;{image_legend},image_01,image_02;{category_legend},jumpTo_01,category_01,category_02;'
     ),
     // Fields
     'fields' => array
@@ -114,27 +114,30 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['published'],
             'inputType' => 'checkbox',
-            'eval' => array('tl_class' => 'w100'),
+            'eval' => array('tl_class' => 'long'),
             'sql' => "char(1) NOT NULL default ''"
         ),
-        'alias' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['alias'],
-            'inputType' => 'text',
-            'eval' => array
-                (
-                'rgxp' => 'alnum',
-                'doNotCopy' => true,
-                'spaceToUnderscore' => true,
-                'maxlength' => 128,
-                'tl_class' => 'w50'
-            ),
-            'save_callback' => array
-                (
-                array('tl_universal_data', 'generateAlias')
-            ),
-            'sql' => "varchar(255) NOT NULL default ''"
-        ),
+        /*
+          'alias' => array
+          (
+          'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['alias'],
+          'inputType' => 'text',
+          'eval' => array
+          (
+          'rgxp' => 'alnum',
+          'doNotCopy' => true,
+          'spaceToUnderscore' => true,
+          'maxlength' => 128,
+          'tl_class' => 'w50'
+          ),
+          'save_callback' => array
+          (
+          array('tl_universal_data', 'generateAlias')
+          ),
+          'sql' => "varchar(255) NOT NULL default ''"
+          ),
+
+         */
         'title_01' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['title_01'],
@@ -155,11 +158,11 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'eval' => array('maxlength' => 255, 'tl_class' => 'w50'),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
-
         'url_01' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_01'],
             'exclude' => true,
+            'filter' => true,
             'search' => true,
             'inputType' => 'text',
             'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
@@ -173,6 +176,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_01'],
             'exclude' => true,
+            'filter' => true,
             'search' => true,
             'inputType' => 'text',
             'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
@@ -186,6 +190,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_02'],
             'exclude' => true,
+            'filter' => true,
             'search' => true,
             'inputType' => 'text',
             'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
@@ -200,9 +205,8 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['description_01'],
             'exclude' => true,
             'search' => true,
-            'filter' => true,
             'inputType' => 'textarea',
-            'eval' => array('style' => 'height:48px', 'tl_class' => 'clr'),
+            'eval' => array('style' => 'height:48px', 'tl_class' => 'clr', 'rte' => 'tinyMCE'),
             'sql' => "text NULL"
         ),
         'description_02' => array
@@ -210,9 +214,8 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['description_02'],
             'exclude' => true,
             'search' => true,
-            'filter' => true,
             'inputType' => 'textarea',
-            'eval' => array('style' => 'height:48px', 'tl_class' => 'clr'),
+            'eval' => array('style' => 'height:48px', 'tl_class' => 'clr', 'rte' => 'tinyMCE'),
             'sql' => "text NULL"
         ),
         'image_01' => array
@@ -220,7 +223,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['image_01'],
             'exclude' => true,
             'inputType' => 'fileTree',
-            'eval' => array('tl_class' => 'long', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_01', 'multiple' => true, 'fieldType' => 'checkbox'),
+            'eval' => array('tl_class' => 'long m12', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_01', 'multiple' => true, 'fieldType' => 'checkbox'),
             'sql' => "blob NULL"
         ),
         'orderSRC_01' => array
@@ -233,7 +236,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['image_02'],
             'exclude' => true,
             'inputType' => 'fileTree',
-            'eval' => array('tl_class' => 'long', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_02', 'multiple' => true, 'fieldType' => 'checkbox'),
+            'eval' => array('tl_class' => 'long m12', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_02', 'multiple' => true, 'fieldType' => 'checkbox'),
             'sql' => "blob NULL"
         ),
         'orderSRC_02' => array
@@ -241,8 +244,41 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['orderSRC_02'],
             'sql' => "blob NULL"
         ),
-
-        )
+        'category_01' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['category_01'],
+            'exclude' => true,
+            'search' => true,
+            'filter' => true,
+            'inputType' => 'select',
+            'options_callback' => array('tl_universal_data', 'getCategory'),
+            'eval' => array('chosen' => true, 'mandatory' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'),
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
+        'category_02' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['category_02'],
+            'exclude' => true,
+            'search' => true,
+            'filter' => true,
+            'inputType' => 'select',
+            'options_callback' => array('tl_universal_data', 'getCategory'),
+            'eval' => array('chosen' => true, 'mandatory' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'),
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
+        'jumpTo_01' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['jumpTo_01'],
+            'exclude' => true,
+            'search' => true,
+            'filter' => true,
+            'inputType' => 'pageTree',
+            'foreignKey' => 'tl_page.title',
+            'eval' => array('fieldType' => 'radio', 'tl_class' => 'long'),
+            'sql' => "blob NULL",
+            'relation' => array('type' => 'hasOne', 'load' => 'eager')
+        ),
+    )
 );
 
 /**
@@ -258,40 +294,23 @@ class tl_universal_data extends Backend
      */
     public function getRowLabel($row)
     {
-        if (false):
-            echo '<pre>';
-            print_r($row);
-            echo '</pre>';
-        endif;
 
-
-
-        if (($row['orderSRC_01']))
+        if ($row['orderSRC_01'])
         {
-
             $arrBilder = deserialize($row['orderSRC_01']);
             $objFile = \FilesModel::findById($arrBilder[0]);
 
-            if ($objFile === null)
+            if ($objFile !== null)
             {
-                if (!\Validator::isUuid($arrBilder[0]))
-                {
-                    return '<p class="error">' . $GLOBALS['TL_LANG']['ERR']['version2format'] . '</p>';
-                }
-
-                return '';
+                $preview = $objFile->path;
+                $image = '<img src="' . $this->getImage($preview, 65, 45, 'center_center') . '" alt="' . htmlspecialchars($label) . '" style="display: inline-block;vertical-align: top;*display:inline;zoom:1;padding-right:8px;" />';
             }
-
-            $preview = $objFile->path;
-
-            $image = '<img src="' . $this->getImage($preview, 65, 45, 'center_center') . '" alt="' . htmlspecialchars($label) . '" style="display: inline-block;vertical-align: top;*display:inline;zoom:1;padding-right:8px;" />';
-            $text .= '<span class="name">' . $row['title_01'] . '</span>';
-        } else
-        {
-            $text .= '<span class="name">' . $row['title_01'] . '</span>';
         }
 
-
+        if ($row['title_01'])
+        {
+            $text = '<span class="name"><b>' . $row['title_01'] . '</b></span>';
+        }
         return $image . $text;
 
 
@@ -301,15 +320,15 @@ class tl_universal_data extends Backend
     public function generateAlias($varValue, DataContainer $dc)
     {
 
-
-
         $autoAlias = false;
         // Generate alias if there is none
         if (!strlen($varValue))
         {
             $autoAlias = true;
-            $varValue = standardize($dc->activeRecord->modell);
+            $varValue = standardize($dc->activeRecord->title_01);
         }
+
+
         $objAlias = $this->Database->prepare("SELECT id FROM tl_universal_data WHERE id=? OR alias=?")
                 ->execute($dc->id, $varValue);
         // Check whether the page alias exists
@@ -376,6 +395,34 @@ class tl_universal_data extends Backend
     public function pagePicker(DataContainer $dc)
     {
         return ' <a href="contao/page.php?do=' . Input::get('do') . '&amp;table=' . $dc->table . '&amp;field=' . $dc->field . '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $dc->value) . '" title="' . specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) . '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' . specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])) . '\',\'url\':this.href,\'id\':\'' . $dc->field . '\',\'tag\':\'ctrl_' . $dc->field . ((Input::get('act') == 'editAll') ? '_' . $dc->id : '') . '\',\'self\':this});return false">' . Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
+    }
+
+    public function getCategory()
+    {
+        $arrCat = array();
+
+        $objData = Database::getInstance()->prepare("SELECT id,title FROM tl_universal_archive WHERE listascategory = 1 ORDER BY sorting")
+                ->execute();
+
+        if ($objData->numRows)
+        {
+            while ($objData->next())
+            {
+                /* inner */
+                $objData2 = Database::getInstance()->prepare("SELECT id,title_01 FROM tl_universal_data WHERE pid=? AND published = '1' ORDER BY sorting")
+                        ->execute($objData->id);
+
+                if ($objData2->numRows)
+                {
+                    while ($objData2->next())
+                    {
+                        $arrCat[$objData->title][$objData2->id] = $objData2->title_01;
+                    }
+                }
+            } // while
+        }
+
+        return $arrCat;
     }
 
 }

@@ -15,10 +15,10 @@
 /**
  * Back end modules
  */
-$GLOBALS['TL_LANG']['MOD']['universalData'] = array('Universal data', 'Input of universal data');
+$GLOBALS['TL_LANG']['MOD']['universalData'] = array('Universal Daten', 'Eingabe von universellen Daten');
 
 
 /**
  * Front end modules
  */
-$GLOBALS['TL_LANG']['FMD']['universal_list'] = array('Universal list', '');
+$GLOBALS['TL_LANG']['FMD']['universal_list'] = array('Universal Liste', '');

@@ -23,10 +23,10 @@ $GLOBALS['TL_DCA']['tl_universal_archive'] = array
         (
         'sorting' => array
             (
-            'mode' => 1,
+            'mode' => 0,
             'fields' => array('title'),
             'flag' => 1,
-            'panelLayout' => 'filter;search,limit',
+            'panelLayout' => 'filter,limit',
         ),
         'label' => array
             (
@@ -81,7 +81,7 @@ $GLOBALS['TL_DCA']['tl_universal_archive'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{title_legend},published,title,description'
+        'default' => '{title_legend},published,listascategory,title,description'
     ),
     // Fields
     'fields' => array
@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_universal_archive'] = array
             (
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
-         'sorting' => array
+        'sorting' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_archive']['sorting'],
             'inputType' => 'text',
@@ -105,23 +105,33 @@ $GLOBALS['TL_DCA']['tl_universal_archive'] = array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_archive']['published'],
             'inputType' => 'checkbox',
-            'eval' => array('tl_class' => 'w100'),
+            'eval' => array('tl_class' => 'w50'),
             'sql' => "char(1) NOT NULL default ''"
         ),
-       'title' => array
+        'listascategory' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_archive']['listascategory'],
+            'inputType' => 'checkbox',
+            'eval' => array('tl_class' => 'w50'),
+            'sql' => "char(1) NOT NULL default ''"
+        ),
+        'title' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_archive']['title'],
             'exclude' => true,
-            'search' => false,
+            'filter' => true,
+            'search' => true,
             'inputType' => 'text',
-            'eval' => array('mandatory' => true, 'maxlength' => 128, 'tl_class' => 'w50'),
+            'eval' => array('mandatory' => true, 'maxlength' => 128, 'tl_class' => 'long'),
             'sql' => "varchar(128) NOT NULL default ''"
         ),
         'description' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_archive']['description'],
+            'exclude' => true,
+            'search' => true,
             'inputType' => 'textarea',
-            'eval' => array('style' => 'height: 48px','tl_class' => 'clr'),
+            'eval' => array('style' => 'height: 48px', 'tl_class' => 'long', 'rte' => 'tinyMCE'),
             'sql' => "text NULL"
         )
     )

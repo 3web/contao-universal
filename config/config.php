@@ -38,7 +38,7 @@
  * have to be set. Take a look at the system/modules/core/config/config.php
  * file to see how back end modules are configured.
  */
-$GLOBALS['BE_MOD']['content']['universal'] = array
+$GLOBALS['BE_MOD']['content']['universalData'] = array
 (
         'tables' => array('tl_universal_archive','tl_universal_data'),
         'icon'   => 'system/modules/universal/assets/icon.png'

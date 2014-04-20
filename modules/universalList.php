@@ -44,7 +44,13 @@ class universalList extends \Module
         $arrCat = deserialize($objParams->universal_list_archive);
         $strAnd = implode(',', $arrCat);
 
+        echo $objParams->universal_filter_page;
+        if ($objParams->universal_filter_page)
+        {
+            global $objPage;
 
+            $strJump = 'AND a.jumpTo_01 = ' . $objPage->id;
+        }
 
         //Wenn nötig, dann neues Template aktivieren
         if (($objParams->universal_template != $this->strTemplate) && ($objParams->universal_template != ''))
@@ -57,7 +63,7 @@ class universalList extends \Module
 
         $arrUniversalData = array();
 
-        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_universal_data a, tl_universal_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ')  AND a.published = "1" ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
+        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_universal_data a, tl_universal_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
 
         $objData = Database::getInstance()->prepare($query)->limit($numberPerPage, $pageStart)->execute();
         $objNum = Database::getInstance()->execute('SELECT FOUND_ROWS() as num');
@@ -93,6 +99,9 @@ class universalList extends \Module
                 'description_01' => trim($objData->description_01),
                 'description_02' => trim($objData->description_02),
                 //'description_03' => trim($objData->description_03),
+                'jumpTo_01' => trim($objData->jumpTo_01),
+                'categorie_01' => trim($objData->categorie_01),
+                'categorie_02' => trim($objData->categorie_02),
                 'arc_title' => trim($objData->arc_title),
                 'arc_description' => trim($objData->arc_description),
                 'arc_count' => $countcat,

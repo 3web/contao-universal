@@ -12,19 +12,14 @@
  */
 
 
-/**
- * Back end modules
- */
-$GLOBALS['TL_LANG']['MOD']['universal'] = array('Universal Daten', 'Eingabe von universellen Daten');
 
-
-/**
- * Front end modules
- */
-$GLOBALS['TL_LANG']['FMD']['universal_list'] = array('Universal Liste', '');
 
 $GLOBALS['TL_LANG']['tl_module']['universal_legend'] = 'Universal Optionen';
 $GLOBALS['TL_LANG']['tl_module']['universal_list_archive'] = array('Archiv', '');
 $GLOBALS['TL_LANG']['tl_module']['universal_template'] = array('Template', '');
-$GLOBALS['TL_LANG']['tl_module']['universal_per_page'] = array('Anzahl pro Seite (0 = kein Seitenumbruch)', '');
+$GLOBALS['TL_LANG']['tl_module']['universal_per_page'] = array('Anzahl pro Seite', '(0 = kein Seitenumbruch)');
+$GLOBALS['TL_LANG']['tl_module']['universal_filter_page'] = array('Seiten Filter anwenden', '');
+$GLOBALS['TL_LANG']['tl_module']['universal_iscategory'] = array('Als Kategorie auflisten', '');
+
+
 

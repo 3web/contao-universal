@@ -18,6 +18,7 @@
 $GLOBALS['TL_LANG']['tl_universal_archive']['published'] = array('Veröffentlicht', '');
 $GLOBALS['TL_LANG']['tl_universal_archive']['title'] = array('Titel Archiv', 'Bitte Titel eingeben.');
 $GLOBALS['TL_LANG']['tl_universal_archive']['description'] = array('Beschreibung', '');
+$GLOBALS['TL_LANG']['tl_universal_archive']['listascategory'] = array('Als Kategorie auflisten', '');
 
 
 /**

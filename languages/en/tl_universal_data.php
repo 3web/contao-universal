@@ -26,13 +26,16 @@ $GLOBALS['TL_LANG']['tl_universal_data']['description_02'] = array('Description 
 $GLOBALS['TL_LANG']['tl_universal_data']['description_03'] = array('Description 3', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['image_01'] = array('Images 1', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['image_02'] = array('Images 2', '');
-
+$GLOBALS['TL_LANG']['tl_universal_data']['category_01'] = array('Category 1 (universal)', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['category_02'] = array('Category 2 (universal)', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['jumpTo_01'] = array('Category pages', '');
 
 /**
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_universal_data']['text_legend'] = 'Text';
 $GLOBALS['TL_LANG']['tl_universal_data']['image_legend'] = 'Image';
+$GLOBALS['TL_LANG']['tl_universal_data']['category_legend'] = 'Category';
 
 
 /**
