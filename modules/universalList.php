@@ -67,11 +67,19 @@ class universalList extends \Module
 
         $objData = Database::getInstance()->prepare($query)->limit($numberPerPage, $pageStart)->execute();
         $objNum = Database::getInstance()->execute('SELECT FOUND_ROWS() as num');
-        $query_cc = ' SELECT pid, COUNT(id) as cc FROM tl_universal_data WHERE 1 AND pid IN (' . $strAnd . ')  AND published = "1" GROUP BY pid';
+        $query_cc = ' SELECT pid, COUNT(id) as cc FROM tl_universal_data WHERE 1 AND pid IN (' . $strAnd . ') ' . $strJump . ' AND published = "1" GROUP BY pid';
         $objCount = Database::getInstance()->prepare($query_cc)->execute();
         while ($objCount->next())
         {
             $arrCount[$objCount->pid] = $objCount->cc;
+        }
+
+        /* category */
+        $query_cat = ' SELECT id,title_01 FROM tl_universal_data WHERE 1  AND published = "1" ';
+        $objCat = Database::getInstance()->prepare($query_cat)->execute();
+        while ($objCat->next())
+        {
+            $arrCat[$objCat->id] = $objCat->title_01;
         }
 
 
@@ -95,13 +103,9 @@ class universalList extends \Module
                 'title_02' => trim($objData->title_02),
                 'url_01' => trim($objData->url_01),
                 'url_02' => trim($objData->url_02),
-                //'title_03' => trim($objData->title_03),
                 'description_01' => trim($objData->description_01),
                 'description_02' => trim($objData->description_02),
-                //'description_03' => trim($objData->description_03),
                 'jumpTo_01' => trim($objData->jumpTo_01),
-                'categorie_01' => trim($objData->categorie_01),
-                'categorie_02' => trim($objData->categorie_02),
                 'arc_title' => trim($objData->arc_title),
                 'arc_description' => trim($objData->arc_description),
                 'arc_count' => $countcat,
@@ -137,6 +141,14 @@ class universalList extends \Module
                     }
                 }
                 $arrNew['image_02'] = $arrImagesPath;
+            }
+            if ($objData->category_01 > 0)
+            {
+                $arrNew['category_01'] = $arrCat[$objData->category_01];
+            }
+            if ($objData->category_02 > 0)
+            {
+                $arrNew['category_02'] = $arrCat[$objData->category_02];
             }
 
 

@@ -19,6 +19,7 @@
                         <a href="<?php echo $row['url_01']; ?>"<?php echo LINK_NEW_WINDOW; ?>>
                         <?php endif; ?>
                         <div class="universal_title"><?php echo $row['title_01']; ?></div>
+                        <div class="universal_category"><?php echo $row['category_01']; ?></div>
                         <img src="<?php echo $this->getImage($row['image_01'][0], '160', '100', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
                         <div class="universal_description"><?php echo nl2br($row['description_01']); ?></div>
                         <?php if ($row['url_01'] != ''): ?>
