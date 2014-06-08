@@ -223,7 +223,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['image_01'],
             'exclude' => true,
             'inputType' => 'fileTree',
-            'eval' => array('tl_class' => 'long m12', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_01', 'multiple' => true, 'fieldType' => 'checkbox'),
+            'eval' => array('tl_class' => 'long m12', 'path' => 'files', 'filesOnly' => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_01', 'multiple' => true, 'fieldType' => 'checkbox'),
             'sql' => "blob NULL"
         ),
         'orderSRC_01' => array
@@ -236,7 +236,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['image_02'],
             'exclude' => true,
             'inputType' => 'fileTree',
-            'eval' => array('tl_class' => 'long m12', 'path' => 'files/', 'filesOnly' => true, files => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_02', 'multiple' => true, 'fieldType' => 'checkbox'),
+            'eval' => array('tl_class' => 'long m12', 'path' => 'files', 'filesOnly' => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'orderField' => 'orderSRC_02', 'multiple' => true, 'fieldType' => 'checkbox'),
             'sql' => "blob NULL"
         ),
         'orderSRC_02' => array
