@@ -44,7 +44,6 @@ class universalList extends \Module
         $arrCat = deserialize($objParams->universal_list_archive);
         $strAnd = implode(',', $arrCat);
 
-        echo $objParams->universal_filter_page;
         if ($objParams->universal_filter_page)
         {
             global $objPage;
@@ -115,6 +114,7 @@ class universalList extends \Module
             /* 01 */
             if ($objData->image_01)
             {
+                $arrImages = array();
                 $arrImagesPath = array();
                 $arrTemp = deserialize($objData->image_01);
                 if (is_array($arrTemp))
@@ -137,6 +137,7 @@ class universalList extends \Module
             /* 02 */
             if ($objData->image_02)
             {
+                $arrImages = array();
                 $arrImagesPath = array();
                 $arrTemp = deserialize($objData->image_02);
                 if (is_array($arrTemp))
