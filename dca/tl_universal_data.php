@@ -172,20 +172,6 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             ),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
-        'url_01' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_01'],
-            'exclude' => true,
-            'filter' => true,
-            'search' => true,
-            'inputType' => 'text',
-            'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
-            'wizard' => array
-                (
-                array('tl_universal_data', 'pagePicker')
-            ),
-            'sql' => "varchar(255) NOT NULL default ''"
-        ),
         'url_02' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_02'],
