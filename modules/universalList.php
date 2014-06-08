@@ -116,7 +116,14 @@ class universalList extends \Module
             if ($objData->image_01)
             {
                 $arrImagesPath = array();
-                $arrImages = deserialize($objData->image_01);
+                $arrTemp = deserialize($objData->image_01);
+                if (is_array($arrTemp))
+                {
+                    $arrImages = $arrTemp;
+                } else
+                {
+                    $arrImages[] = $arrTemp;
+                }
                 foreach ($arrImages as $image)
                 {
                     $objFile = \FilesModel::findById($image);
@@ -131,7 +138,14 @@ class universalList extends \Module
             if ($objData->image_02)
             {
                 $arrImagesPath = array();
-                $arrImages = deserialize($objData->image_02);
+                $arrTemp = deserialize($objData->image_02);
+                if (is_array($arrTemp))
+                {
+                    $arrImages = $arrTemp;
+                } else
+                {
+                    $arrImages[] = $arrTemp;
+                }
                 foreach ($arrImages as $image)
                 {
                     $objFile = \FilesModel::findById($image);
