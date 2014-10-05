@@ -1,13 +1,13 @@
 <?php
 
-class universalList extends \Module
+class format_produkteList extends \Module
 {
 
     /**
      * Template
      * @var string
      */
-    protected $strTemplate = 'universal_list_default';
+    protected $strTemplate = 'format_produkte_list_default';
 
     /**
      * Compile the current element
@@ -21,13 +21,13 @@ class universalList extends \Module
                 ->limit(1)
                 ->execute($this->id);
 
-        if ($objParams->universal_list_archive === '')
+        if ($objParams->format_produkte_list_archive === '')
         {
             return false;
         }
-        if ($objParams->universal_per_page !== '')
+        if ($objParams->format_produkte_per_page !== '')
         {
-            $numberPerPage = $objParams->universal_per_page;
+            $numberPerPage = $objParams->format_produkte_per_page;
         } else
         {
             $numberPerPage = 0;
@@ -41,20 +41,21 @@ class universalList extends \Module
             $pageStart = 0;
         }
 
-        $arrCat = deserialize($objParams->universal_list_archive);
+        $arrCat = deserialize($objParams->format_produkte_list_archive);
         $strAnd = implode(',', $arrCat);
 
-        if ($objParams->universal_filter_page)
+        if ($objParams->format_produkte_filter_page)
         {
             global $objPage;
 
-            $strJump = 'AND a.jumpTo_01 = ' . $objPage->id;
+           // $strJump = 'AND a.jumpTo_01 = ' . $objPage->id;
+            $strJump = 'AND a.jumpTo_01 LIKE "%%:' . $objPage->id . ';%%"';
         }
 
         //Wenn nötig, dann neues Template aktivieren
-        if (($objParams->universal_template != $this->strTemplate) && ($objParams->universal_template != ''))
+        if (($objParams->format_produkte_template != $this->strTemplate) && ($objParams->format_produkte_template != ''))
         {
-            $this->strTemplate = $objParams->universal_template;
+            $this->strTemplate = $objParams->format_produkte_template;
             $this->Template = new FrontendTemplate($this->strTemplate);
         }
 
@@ -62,19 +63,20 @@ class universalList extends \Module
 
         $arrUniversalData = array();
 
-        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_universal_data a, tl_universal_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
+        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_format_produkte_data a, tl_format_produkte_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
 
         $objData = Database::getInstance()->prepare($query)->limit($numberPerPage, $pageStart)->execute();
         $objNum = Database::getInstance()->execute('SELECT FOUND_ROWS() as num');
-        $query_cc = ' SELECT pid, COUNT(id) as cc FROM tl_universal_data WHERE 1 AND pid IN (' . $strAnd . ') ' . $strJump . ' AND published = "1" GROUP BY pid';
+        $query_cc = ' SELECT a.pid, COUNT(a.id) as cc FROM tl_format_produkte_data a WHERE 1 AND a.pid IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" GROUP BY a.pid';
         $objCount = Database::getInstance()->prepare($query_cc)->execute();
         while ($objCount->next())
         {
             $arrCount[$objCount->pid] = $objCount->cc;
         }
 
+        
         /* category */
-        $query_cat = ' SELECT id,title_01 FROM tl_universal_data WHERE 1  AND published = "1" ';
+        $query_cat = ' SELECT id,title_01 FROM tl_format_produkte_data WHERE 1  AND published = "1" ';
         $objCat = Database::getInstance()->prepare($query_cat)->execute();
         while ($objCat->next())
         {
@@ -112,11 +114,11 @@ class universalList extends \Module
             );
 
             /* 01 */
-            if ($objData->image_01)
+            if ($objData->orderSRC_01)
             {
                 $arrImages = array();
                 $arrImagesPath = array();
-                $arrTemp = deserialize($objData->image_01);
+                $arrTemp = deserialize($objData->orderSRC_01);
                 if (is_array($arrTemp))
                 {
                     $arrImages = $arrTemp;
@@ -129,17 +131,17 @@ class universalList extends \Module
                     $objFile = \FilesModel::findById($image);
                     if ($objFile->path && file_exists(TL_ROOT . "/" . $objFile->path))
                     {
-                        $arrImagesPath[] = $objFile->path;
+                        $arrImagesPath[] = $this->getImage($objFile->path, 1200, 500, 'center_center');
                     }
                 }
                 $arrNew['image_01'] = $arrImagesPath;
             }
             /* 02 */
-            if ($objData->image_02)
+            if ($objData->orderSRC_02)
             {
                 $arrImages = array();
                 $arrImagesPath = array();
-                $arrTemp = deserialize($objData->image_02);
+                $arrTemp = deserialize($objData->orderSRC_02);
                 if (is_array($arrTemp))
                 {
                     $arrImages = $arrTemp;
