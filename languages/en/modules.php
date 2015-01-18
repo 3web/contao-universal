@@ -21,4 +21,4 @@ $GLOBALS['TL_LANG']['MOD']['universalData'] = array('Universal data', 'Input of 
 /**
  * Front end modules
  */
-$GLOBALS['TL_LANG']['FMD']['universal_list'] = array('Universal list', '');
+$GLOBALS['TL_LANG']['FMD']['universal_list'] = array('Universal data list', '');
