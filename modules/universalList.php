@@ -1,13 +1,13 @@
 <?php
 
-class format_produkteList extends \Module
+class universalList extends \Module
 {
 
     /**
      * Template
      * @var string
      */
-    protected $strTemplate = 'format_produkte_list_default';
+    protected $strTemplate = 'universal_list_default';
 
     /**
      * Compile the current element
@@ -21,13 +21,13 @@ class format_produkteList extends \Module
                 ->limit(1)
                 ->execute($this->id);
 
-        if ($objParams->format_produkte_list_archive === '')
+        if ($objParams->universal_list_archive === '')
         {
             return false;
         }
-        if ($objParams->format_produkte_per_page !== '')
+        if ($objParams->universal_per_page !== '')
         {
-            $numberPerPage = $objParams->format_produkte_per_page;
+            $numberPerPage = $objParams->universal_per_page;
         } else
         {
             $numberPerPage = 0;
@@ -41,10 +41,10 @@ class format_produkteList extends \Module
             $pageStart = 0;
         }
 
-        $arrCat = deserialize($objParams->format_produkte_list_archive);
+        $arrCat = deserialize($objParams->universal_list_archive);
         $strAnd = implode(',', $arrCat);
 
-        if ($objParams->format_produkte_filter_page)
+        if ($objParams->universal_filter_page)
         {
             global $objPage;
 
@@ -53,9 +53,9 @@ class format_produkteList extends \Module
         }
 
         //Wenn nötig, dann neues Template aktivieren
-        if (($objParams->format_produkte_template != $this->strTemplate) && ($objParams->format_produkte_template != ''))
+        if (($objParams->universal_template != $this->strTemplate) && ($objParams->universal_template != ''))
         {
-            $this->strTemplate = $objParams->format_produkte_template;
+            $this->strTemplate = $objParams->universal_template;
             $this->Template = new FrontendTemplate($this->strTemplate);
         }
 
@@ -63,11 +63,11 @@ class format_produkteList extends \Module
 
         $arrUniversalData = array();
 
-        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_format_produkte_data a, tl_format_produkte_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
+        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_universal_data a, tl_universal_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
 
         $objData = Database::getInstance()->prepare($query)->limit($numberPerPage, $pageStart)->execute();
         $objNum = Database::getInstance()->execute('SELECT FOUND_ROWS() as num');
-        $query_cc = ' SELECT a.pid, COUNT(a.id) as cc FROM tl_format_produkte_data a WHERE 1 AND a.pid IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" GROUP BY a.pid';
+        $query_cc = ' SELECT a.pid, COUNT(a.id) as cc FROM tl_universal_data a WHERE 1 AND a.pid IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" GROUP BY a.pid';
         $objCount = Database::getInstance()->prepare($query_cc)->execute();
         while ($objCount->next())
         {
@@ -76,7 +76,7 @@ class format_produkteList extends \Module
 
         
         /* category */
-        $query_cat = ' SELECT id,title_01 FROM tl_format_produkte_data WHERE 1  AND published = "1" ';
+        $query_cat = ' SELECT id,title_01 FROM tl_universal_data WHERE 1  AND published = "1" ';
         $objCat = Database::getInstance()->prepare($query_cat)->execute();
         while ($objCat->next())
         {
@@ -102,6 +102,7 @@ class format_produkteList extends \Module
                 'id' => trim($objData->id),
                 'title_01' => trim($objData->title_01),
                 'title_02' => trim($objData->title_02),
+                'alias' => trim($objData->alias),
                 'url_01' => trim($objData->url_01),
                 'url_02' => trim($objData->url_02),
                 'description_01' => trim($objData->description_01),

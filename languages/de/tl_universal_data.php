@@ -16,17 +16,18 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_universal_data']['published'] = array('Veröffentlicht', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['title_01'] = array('Text 1', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['title_02'] = array('Text 2', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['url_01'] = array('Link 1', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['title_01'] = array('Titel', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['title_02'] = array('Titel 2', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['url_01'] = array('Link', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['url_02'] = array('Link 2', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['description_01'] = array('Beschreibung 1', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['description_01'] = array('Beschreibung', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['description_02'] = array('Beschreibung 2', '');
-$GLOBALS['TL_LANG']['tl_universal_data']['image_01'] = array('Bilder 1', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['image_01'] = array('Bilder', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['image_02'] = array('Bilder 2', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['category_01'] = array('Kategorie 1 (Universal)', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['category_02'] = array('Kategorie 2 (Universal)', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['jumpTo_01'] = array('Kategorie (Seiten Filter)', '');
+$GLOBALS['TL_LANG']['tl_universal_data']['alias'] = array('Alias', 'Alias wird automatisch generiert wenn es leer ist.');
 
 
 /**

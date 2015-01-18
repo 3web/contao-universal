@@ -29,7 +29,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'fields' => array('sorting'),
             'headerFields' => array('title'),
             'panelLayout' => 'filter;search,limit',
-            'child_record_callback' => array('tl_universal_data', 'getRowLabel')
+            'child_record_callback' => array('tl_universal_data_ext', 'getRowLabel')
         ),
         'global_operations' => array
             (
@@ -73,7 +73,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
                 'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['toggle'],
                 'icon' => 'visible.gif',
                 'attributes' => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-                'button_callback' => array('tl_universal_data', 'toggleIcon')
+                'button_callback' => array('tl_universal_data_ext', 'toggleIcon')
             ),
             'show' => array
                 (
@@ -132,7 +132,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
           ),
           'save_callback' => array
           (
-          array('tl_universal_data', 'generateAlias')
+          array('tl_universal_data_ext', 'generateAlias')
           ),
           'sql' => "varchar(255) NOT NULL default ''"
           ),
@@ -168,7 +168,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
             'wizard' => array
                 (
-                array('tl_universal_data', 'pagePicker')
+                array('tl_universal_data_ext', 'pagePicker')
             ),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
@@ -182,7 +182,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
             'wizard' => array
                 (
-                array('tl_universal_data', 'pagePicker')
+                array('tl_universal_data_ext', 'pagePicker')
             ),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
@@ -237,7 +237,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'search' => true,
             'filter' => true,
             'inputType' => 'select',
-            'options_callback' => array('tl_universal_data', 'getCategory'),
+            'options_callback' => array('tl_universal_data_ext', 'getCategory'),
             'eval' => array('chosen' => true, 'mandatory' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'),
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
@@ -248,7 +248,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'search' => true,
             'filter' => true,
             'inputType' => 'select',
-            'options_callback' => array('tl_universal_data', 'getCategory'),
+            'options_callback' => array('tl_universal_data_ext', 'getCategory'),
             'eval' => array('chosen' => true, 'mandatory' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'),
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
@@ -270,7 +270,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
 /**
  * Provide miscellaneous methods that are used by the data configuration array
  */
-class tl_universal_data extends Backend
+class tl_universal_data_ext extends Backend
 {
 
     /**
@@ -295,7 +295,7 @@ class tl_universal_data extends Backend
 
         if ($row['title_01'])
         {
-            $text = '<span class="name"><b>' . $row['title_01'] . '</b></span>';
+            $text = '<span class="name">' . $row['title_01'] . '</span>';
         }
         return $image . $text;
 
