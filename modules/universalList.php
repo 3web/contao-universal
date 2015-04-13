@@ -48,8 +48,8 @@ class universalList extends \Module
         {
             global $objPage;
 
-           // $strJump = 'AND a.jumpTo_01 = ' . $objPage->id;
-            $strJump = 'AND a.jumpTo_01 LIKE "%%:' . $objPage->id . ';%%"';
+           // $strJump = 'AND a.jumpTo_01 LIKE "%%:' . $objPage->id . ';%%"';
+            $strJump = 'AND a.jumpTo_01 = ' . $objPage->id;
         }
 
         //Wenn nötig, dann neues Template aktivieren
