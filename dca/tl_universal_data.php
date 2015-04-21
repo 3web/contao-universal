@@ -93,7 +93,8 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
         (
         'id' => array
             (
-            'sql' => "int(10) unsigned NOT NULL auto_increment"
+            'sql' => "int(10) unsigned NOT NULL auto_increment",
+            'eval' => array('doNotCopy' => 'true'),
         ),
         'pid' => array
             (
