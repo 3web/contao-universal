@@ -133,7 +133,7 @@ class universalList extends \Module
                     $objFile = \FilesModel::findById($image);
                     if ($objFile->path && file_exists(TL_ROOT . "/" . $objFile->path))
                     {
-                        $arrImagesPath[] = $this->getImage($objFile->path, 1200, 500, 'center_center');
+                        $arrImagesPath[] = $objFile->path;
                     }
                 }
                 $arrNew['image_01'] = $arrImagesPath;
