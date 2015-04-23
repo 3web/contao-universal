@@ -116,7 +116,7 @@ class universalList extends \Module
             );
 
             /* 01 */
-            if ($objData->orderSRC_01)
+            if ($objData->image_01 && $objData->orderSRC_01)
             {
                 $arrImages = array();
                 $arrImagesPath = array();
@@ -139,7 +139,7 @@ class universalList extends \Module
                 $arrNew['image_01'] = $arrImagesPath;
             }
             /* 02 */
-            if ($objData->orderSRC_02)
+            if ($objData->image_02 && $objData->orderSRC_02)
             {
                 $arrImages = array();
                 $arrImagesPath = array();
