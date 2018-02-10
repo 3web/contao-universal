@@ -81,7 +81,7 @@ $GLOBALS['TL_DCA']['tl_universal_archive'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{title_legend},published,listascategory,title;description'
+        'default' => '{title_legend},published,title;description'
     ),
     // Fields
     'fields' => array
@@ -105,13 +105,6 @@ $GLOBALS['TL_DCA']['tl_universal_archive'] = array
         'published' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_archive']['published'],
-            'inputType' => 'checkbox',
-            'eval' => array('tl_class' => 'long'),
-            'sql' => "char(1) NOT NULL default ''"
-        ),
-        'listascategory' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_archive']['listascategory'],
             'inputType' => 'checkbox',
             'eval' => array('tl_class' => 'long'),
             'sql' => "char(1) NOT NULL default ''"

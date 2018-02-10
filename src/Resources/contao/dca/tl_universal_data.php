@@ -87,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02,date;{image_legend},image_01,image_02;{category_legend},jumpTo_01,category_01,category_02;'
+        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02,date;{image_legend},image_01,image_02;{category_legend},jumpTo_01;'
     ),
     // Fields
     'fields' => array
@@ -246,28 +246,6 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['orderSRC_02'],
             'sql' => "blob NULL"
         ),
-        'category_01' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['category_01'],
-            'exclude' => true,
-            'search' => true,
-            'filter' => true,
-            'inputType' => 'select',
-            'options_callback' => array('tl_universal_data_ext', 'getCategory'),
-            'eval' => array('chosen' => true, 'mandatory' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'),
-            'sql' => "int(10) unsigned NOT NULL default '0'"
-        ),
-        'category_02' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['category_02'],
-            'exclude' => true,
-            'search' => true,
-            'filter' => true,
-            'inputType' => 'select',
-            'options_callback' => array('tl_universal_data_ext', 'getCategory'),
-            'eval' => array('chosen' => true, 'mandatory' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'),
-            'sql' => "int(10) unsigned NOT NULL default '0'"
-        ),
         'jumpTo_01' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['jumpTo_01'],
@@ -399,32 +377,6 @@ class tl_universal_data_ext extends Backend
         return ' <a href="contao/page.php?do=' . Input::get('do') . '&amp;table=' . $dc->table . '&amp;field=' . $dc->field . '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $dc->value) . '" title="' . specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) . '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' . specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])) . '\',\'url\':this.href,\'id\':\'' . $dc->field . '\',\'tag\':\'ctrl_' . $dc->field . ((Input::get('act') == 'editAll') ? '_' . $dc->id : '') . '\',\'self\':this});return false">' . Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
     }
 
-    public function getCategory()
-    {
-        $arrCat = array();
-
-        $objData = Database::getInstance()->prepare("SELECT id,title FROM tl_universal_archive WHERE listascategory = 1 ORDER BY sorting")
-                ->execute();
-
-        if ($objData->numRows)
-        {
-            while ($objData->next())
-            {
-                /* inner */
-                $objData2 = Database::getInstance()->prepare("SELECT id,title_01 FROM tl_universal_data WHERE pid=? AND published = '1' ORDER BY sorting")
-                        ->execute($objData->id);
-
-                if ($objData2->numRows)
-                {
-                    while ($objData2->next())
-                    {
-                        $arrCat[$objData->title][$objData2->id] = $objData2->title_01;
-                    }
-                }
-            } // while
-        }
-
-        return $arrCat;
-    }
+   
 
 }
