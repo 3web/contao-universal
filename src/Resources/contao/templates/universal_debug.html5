@@ -20,7 +20,6 @@
                                             <img src="<?php echo $this->getImage($image, '120', '70', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
                                         </div>
                                     <?php endif; ?>
-
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <?php echo $key . ': ' . $val . '<br>'; ?>
@@ -35,5 +34,5 @@
     <?php if ($this->pagination): ?>
         <?php echo $this->pagination; ?>
     <?php endif; ?>
-
+test
 </div>
