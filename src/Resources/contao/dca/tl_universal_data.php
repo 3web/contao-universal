@@ -87,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02,date;{image_legend},image_01,image_02;{category_legend},jumpTo_01;'
+        'default' => '{text_legend},published,title_01,title_02,date,url_01,description_01;{image_legend},image_01,image_02;{category_legend},jumpTo_01;'
     ),
     // Fields
     'fields' => array
@@ -177,32 +177,9 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             ),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
-        'url_02' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['url_02'],
-            'exclude' => true,
-            'filter' => true,
-            'search' => true,
-            'inputType' => 'text',
-            'eval' => array('mandatory' => false, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'tl_class' => 'w50 wizard'),
-            'wizard' => array
-                (
-                array('tl_universal_data_ext', 'pagePicker')
-            ),
-            'sql' => "varchar(255) NOT NULL default ''"
-        ),
         'description_01' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['description_01'],
-            'exclude' => true,
-            'search' => true,
-            'inputType' => 'textarea',
-            'eval' => array('style' => 'height:48px', 'tl_class' => 'clr', 'rte' => 'tinyMCE'),
-            'sql' => "text NULL"
-        ),
-        'description_02' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['description_02'],
             'exclude' => true,
             'search' => true,
             'inputType' => 'textarea',
