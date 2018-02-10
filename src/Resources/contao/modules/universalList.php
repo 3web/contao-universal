@@ -189,14 +189,7 @@ class universalList extends \Module
                 }
                 $arrNew['image_02'] = $arrImagesPath;
             }
-            if ($objData->category_01 > 0)
-            {
-                $arrNew['category_01'] = $arrCat[$objData->category_01];
-            }
-            if ($objData->category_02 > 0)
-            {
-                $arrNew['category_02'] = $arrCat[$objData->category_02];
-            }
+        
 
 
             $arrUniversalData[$objData->arc_id][] = $arrNew;
