@@ -23,7 +23,7 @@
 
                                 <?php endforeach; ?>
                             <?php else: ?>
-                                <?php echo '<br>' . $key . ': ' . $val; ?>
+                                <?php echo $key . ': ' . $val . '<br>'; ?>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
