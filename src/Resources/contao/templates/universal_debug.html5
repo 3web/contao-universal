@@ -13,10 +13,14 @@
                         <?php foreach ($row as $key => $val): ?>
                             <?php if (strstr($key, 'image')): ?>
                                 <?php foreach ($val as $key => $image): ?>
-                                    <?php echo '<br>' . $key . ': ' . $image; ?>
-                                    <div class="image_container">
-                                        <img src="<?php echo $image; ?>" alt="<?php echo $image; ?>">
-                                    </div>
+                                    <?php if ($image != ''): ?>
+
+                                        <?php echo '<br>image ' . $key +1 . ': ' . $image; ?>
+                                        <div class="image_container">
+                                            <img src="<?php echo $image; ?>" alt="<?php echo $image; ?>">
+                                        </div>
+                                    <?php endif; ?>
+
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <?php echo '<br>' . $key . ': ' . $val; ?>
