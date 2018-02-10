@@ -21,7 +21,7 @@
                         <div class="universal_date"><?php $this->parseDate("F y",$row['date']); ?></div>
                         <div class="universal_title"><?php echo $row['title_01']; ?></div>
                         <div class="universal_category"><?php echo $row['category_01']; ?></div>
-                        <?php if ( is_array$row['image_01'] ) ): ?>
+                        <?php if ( is_array($row['image_01'] ) ): ?>
                              <img src="<?php echo $this->getImage($row['image_01'][0], '160', '100', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
                         <?php endif; ?>
                         <div class="universal_description"><?php echo nl2br($row['description_01']); ?></div>
