@@ -28,6 +28,7 @@ $GLOBALS['TL_LANG']['tl_universal_data']['category_01'] = array('Category 1 (uni
 $GLOBALS['TL_LANG']['tl_universal_data']['category_02'] = array('Category 2 (universal)', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['jumpTo_01'] = array('Category (page filter)', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['alias'] = array('Alias', 'Alias​is automatically generated when it is empty.');
+$GLOBALS['TL_LANG']['tl_universal_data']['date'] = array('Date', '');
 
 /**
  * Legends

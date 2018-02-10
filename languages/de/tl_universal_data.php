@@ -28,6 +28,7 @@ $GLOBALS['TL_LANG']['tl_universal_data']['category_01'] = array('Kategorie 1 (Un
 $GLOBALS['TL_LANG']['tl_universal_data']['category_02'] = array('Kategorie 2 (Universal)', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['jumpTo_01'] = array('Kategorie (Seiten Filter)', '');
 $GLOBALS['TL_LANG']['tl_universal_data']['alias'] = array('Alias', 'Alias wird automatisch generiert wenn es leer ist.');
+$GLOBALS['TL_LANG']['tl_universal_data']['date'] = array('Datum', '');
 
 
 /**
@@ -41,9 +42,9 @@ $GLOBALS['TL_LANG']['tl_universal_data']['category_legend'] = 'Kategorie';
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_universal_data']['new']    = array('New ', 'Create a new ');
-$GLOBALS['TL_LANG']['tl_universal_data']['show']   = array(' details', 'Show the details of  ID %s');
-$GLOBALS['TL_LANG']['tl_universal_data']['edit']   = array('Edit ', 'Edit  ID %s');
-$GLOBALS['TL_LANG']['tl_universal_data']['cut']    = array('Move ', 'Move  ID %s');
-$GLOBALS['TL_LANG']['tl_universal_data']['copy']   = array('Duplicate ', 'Duplicate  ID %s');
-$GLOBALS['TL_LANG']['tl_universal_data']['delete'] = array('Delete ', 'Delete  ID %s');
+$GLOBALS['TL_LANG']['tl_universal_data']['new']    = array('Neu ', 'Neuer Eintrag ');
+$GLOBALS['TL_LANG']['tl_universal_data']['show']   = array('Details', 'Zeigt die Details von ID %s');
+$GLOBALS['TL_LANG']['tl_universal_data']['edit']   = array('Editieren ', 'Editiere ID %s');
+$GLOBALS['TL_LANG']['tl_universal_data']['cut']    = array('Verschieben ', 'Verschiebe ID %s');
+$GLOBALS['TL_LANG']['tl_universal_data']['copy']   = array('Duplizieren ', 'Dupliziere ID %s');
+$GLOBALS['TL_LANG']['tl_universal_data']['delete'] = array('Löschen ', 'Lösche ID %s');

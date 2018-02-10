@@ -9,6 +9,29 @@ class universalList extends \Module
      */
     protected $strTemplate = 'universal_list_default';
 
+       /**
+     * Display a wildcard in the back end
+     *
+     * @return string
+     */
+    public function generate()
+    {
+        if (TL_MODE == 'BE')
+        {
+            /** @var \BackendTemplate|object $objTemplate */
+            $objTemplate = new \BackendTemplate('be_wildcard');
+
+            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['universal_list'][0]) . ' ###';
+            $objTemplate->title = $this->headline;
+            $objTemplate->id = $this->id;
+            $objTemplate->link = $this->name;
+            $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+
+            return $objTemplate->parse();
+        }
+
+        return parent::generate();
+    }
     /**
      * Compile the current element
      */
@@ -35,7 +58,7 @@ class universalList extends \Module
 
         if (\Input::get('pageStart') > 0)
         {
-            $pageStart = \Input::get('page') * $numberPerPage;
+            $pageStart = \Input::get('pageStart') * $numberPerPage;
         } else
         {
             $pageStart = 0;
@@ -60,15 +83,19 @@ class universalList extends \Module
             $this->Template = new FrontendTemplate($this->strTemplate);
         }
 
-
+        if (Input::cookie('FE_PREVIEW')) {
+            $fe_published = ' ';
+        } else {
+            $fe_published = ' AND a.published = "1" ';
+        }
 
         $arrUniversalData = array();
 
-        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_universal_data a, tl_universal_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
+        $query = ' SELECT SQL_CALC_FOUND_ROWS a.*, b.title as arc_title,b.description as arc_description, b.id as arc_id FROM tl_universal_data a, tl_universal_archive b WHERE a.pid=b.id  AND b.id IN (' . $strAnd . ') ' . $strJump . $fe_published . ' ORDER BY FIELD(b.id,' . $strAnd . '), a.sorting';
 
         $objData = Database::getInstance()->prepare($query)->limit($numberPerPage, $pageStart)->execute();
         $objNum = Database::getInstance()->execute('SELECT FOUND_ROWS() as num');
-        $query_cc = ' SELECT a.pid, COUNT(a.id) as cc FROM tl_universal_data a WHERE 1 AND a.pid IN (' . $strAnd . ') ' . $strJump . ' AND a.published = "1" GROUP BY a.pid';
+        $query_cc = ' SELECT a.pid, COUNT(a.id) as cc FROM tl_universal_data a WHERE 1 AND a.pid IN (' . $strAnd . ') ' . $strJump . $fe_published . ' GROUP BY a.pid';
         $objCount = Database::getInstance()->prepare($query_cc)->execute();
         while ($objCount->next())
         {
@@ -108,6 +135,7 @@ class universalList extends \Module
                 'url_02' => trim($objData->url_02),
                 'description_01' => trim($objData->description_01),
                 'description_02' => trim($objData->description_02),
+                'date' => trim($objData->date),
                 'jumpTo_01' => trim($objData->jumpTo_01),
                 'arc_title' => trim($objData->arc_title),
                 'arc_description' => trim($objData->arc_description),

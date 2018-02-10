@@ -24,11 +24,12 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
     'list' => array
         (
         'sorting' => array
-            (
+             (
             'mode' => 4,
             'fields' => array('sorting'),
+            'flsag' => 1,
+            'panelLayout' => 'filter;sort,search,limit',
             'headerFields' => array('title'),
-            'panelLayout' => 'filter;search,limit',
             'child_record_callback' => array('tl_universal_data_ext', 'getRowLabel')
         ),
         'global_operations' => array
@@ -86,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02;{image_legend},image_01,image_02;{category_legend},jumpTo_01,category_01,category_02;'
+        'default' => '{text_legend},published,title_01,title_02,url_01,url_02,description_01,description_02,date;{image_legend},image_01,image_02;{category_legend},jumpTo_01,category_01,category_02;'
     ),
     // Fields
     'fields' => array
@@ -103,17 +104,20 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
         'sorting' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['sorting'],
+            'sorting' => true,
             'inputType' => 'text',
             'eval' => array('tl_class' => 'w50'),
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
         'tstamp' => array
             (
+            'sorting' => true,
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
         'published' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['published'],
+            'sorting' => true,
             'inputType' => 'checkbox',
             'eval' => array('tl_class' => 'long'),
             'sql' => "char(1) NOT NULL default ''"
@@ -204,6 +208,17 @@ $GLOBALS['TL_DCA']['tl_universal_data'] = array
             'inputType' => 'textarea',
             'eval' => array('style' => 'height:48px', 'tl_class' => 'clr', 'rte' => 'tinyMCE'),
             'sql' => "text NULL"
+        ),
+        'date' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_universal_data']['date'],
+            'exclude' => true,
+            'search' => true,
+            'filter' => true,
+            'inputType' => 'text',
+            'eval' => array('rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard'),
+             //date, time, datim
+            'sql' => "varchar(10) NOT NULL default ''"
         ),
         'image_01' => array
             (
