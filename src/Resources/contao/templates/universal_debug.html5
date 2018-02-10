@@ -9,7 +9,7 @@
             <?php foreach ($arc_row as $row): ?>
 
                 <?php if (true): // debug ?>
-                    <div class="debug" style="border: 1px solid red;padding:4px;">
+                    <div class="debug" style="border: 1px solid red;padding:4px;margin-bottom:20px;">
                         <?php foreach ($row as $key => $val): ?>
                             <?php if (strstr($key, 'image')): ?>
                                 <?php foreach ($val as $key => $image): ?>
@@ -17,7 +17,7 @@
 
                                         <?php echo '<br>image ' . $key . ': ' . $image; ?>
                                         <div class="image_container">
-                                            <img src="<?php echo $this->getImage($image, '160', '100', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
+                                            <img src="<?php echo $this->getImage($image, '120', '70', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
                                         </div>
                                     <?php endif; ?>
 
