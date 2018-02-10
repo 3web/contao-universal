@@ -1,0 +1,39 @@
+{
+    "name": "delirius/contao-universal",
+    "type": "contao-bundle",
+    "description": "Universal Modul für Contao 4",
+    "keywords": ["contao", "modul", "extension", "universal"],
+    "license": "LGPL",
+    "authors": [
+    ],
+    "require": {
+        "php": ">=5.4",
+        "contao/core-bundle": "~4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Delirius\\UniversalModul\\": "src/"
+        },
+        "classmap": [
+            "src/Resources/contao/"
+        ],
+        "exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+        ]        
+    },
+    "extra": {
+        "conta-o": {
+            "sources": {
+                "": "system/modules/universalmodul"
+            },
+            "runonce": [
+                "runonce/runonce.php"
+            ]
+        },
+        "contao-manager-plugin": "Delirius\\UniversalModul\\ContaoManager\\Plugin"        
+    }
+}
+
