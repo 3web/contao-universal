@@ -15,9 +15,9 @@
                                 <?php foreach ($val as $key => $image): ?>
                                     <?php if ($image != ''): ?>
 
-                                        <?php echo '<br>image ' . $key +1 . ': ' . $image; ?>
+                                        <?php echo '<br>image ' . $key . ': ' . $image; ?>
                                         <div class="image_container">
-                                            <img src="<?php echo $image; ?>" alt="<?php echo $image; ?>">
+                                            <img src="<?php echo $this->getImage($image, '160', '100', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
                                         </div>
                                     <?php endif; ?>
 
