@@ -25,9 +25,9 @@
                     <?php endif; ?>
                     <?php if (is_array($row['image_01'])): ?>
                         <?php foreach ($row['image_01'] as $image): ?>
-                            <?= ($row['url_01'] != '') ? '<a href="'.$row['url_01'].'"'. LINK_NEW_WINDOW.'>': ''; ?>
-                            <img src="<?php echo $this->getImage($image, '160', '100', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
-                            <?= ($row['url_01'] != '') ? '</a>':''; ?>
+                            <?= ($row['url_01'] != '' ? '<a href="'.$row['url_01'].'"'. LINK_NEW_WINDOW.'>': ''); ?>
+                            <img src="<?php echo $this->getImage($image, '130', '120', 'center_center') ?>" alt="<?php echo $row['title_01']; ?>">
+                            <?= ($row['url_01'] != '' ? '</a>':''); ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
                     <div class="universal_description"><?php echo nl2br($row['description_01']); ?></div>
