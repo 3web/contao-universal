@@ -25,14 +25,6 @@
         ]        
     },
     "extra": {
-        "conta-o": {
-            "sources": {
-                "": "system/modules/universalmodul"
-            },
-            "runonce": [
-                "runonce/runonce.php"
-            ]
-        },
         "contao-manager-plugin": "Delirius\\UniversalModul\\ContaoManager\\Plugin"        
     }
 }
