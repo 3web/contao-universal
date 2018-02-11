@@ -126,6 +126,7 @@ class universalList extends \Module
 
             $arrNew = array
                 (
+                'published' => trim($objData->published),
                 'id' => trim($objData->id),
                 'title_01' => trim($objData->title_01),
                 'title_02' => trim($objData->title_02),

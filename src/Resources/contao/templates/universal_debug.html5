@@ -14,13 +14,16 @@
                             <?php if (strstr($key, 'image')): ?>
                                 <?php foreach ($val as $key => $image): ?>
                                     <?php if ($image != ''): ?>
-
                                         <?php echo '<br>image ' . $key . ': ' . $image; ?>
                                         <div class="image_container">
                                             <img src="<?php echo $this->getImage($image, '120', '70', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
+                            <?php elseif ($key === 'published'): ?>
+                                <?php echo $key . ': ' . ($val ? '1' : '0') . '<br>'; ?>
+                            <?php elseif ($key === 'date'): ?>
+                                <?php echo $key . ': ' . $this->parseDate('d.m.Y H:i', $val) . '<br>'; ?>
                             <?php else: ?>
                                 <?php echo $key . ': ' . $val . '<br>'; ?>
                             <?php endif; ?>
