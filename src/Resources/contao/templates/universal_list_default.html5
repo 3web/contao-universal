@@ -12,10 +12,10 @@
                 </div>
             <?php endif; ?>
             <div class="universal_item <?php echo $row['class']; ?>">
-                <div class="universal_date"><?php $this->parseDate("F y", $row['date']); ?></div>
                 <?= ($row['url_01'] != '' ? '<a href="' . $row['url_01'] . '"' . LINK_NEW_WINDOW . '>' : ''); ?>
                 <div class="universal_title"><?php echo $row['title_01']; ?><?= ($row['published'] != 1 ? ' (unpublished)' : ''); ?></div>
                 <?= ($row['url_01'] != '' ? '</a>' : ''); ?>
+                <div class="universal_date"><?php echo $this->parseDate("F y", $row['date']); ?></div>
                 <?php if (is_array($row['image_01'])): ?>
                     <?php foreach ($row['image_01'] as $image): ?>
                         <?= ($row['url_01'] != '' ? '<a href="' . $row['url_01'] . '"' . LINK_NEW_WINDOW . '>' : ''); ?>
