@@ -3,10 +3,10 @@ contao-universal
 
 Modul zum erfassen und ausgeben universellen Daten in Contao. Es können verschiedene Archive für Ein- und Ausgabe angelegt werden und individuell sortiert werden. Es stehen folgende Felder zur Verfügung.
 - 2 Textfelder
-- 2 Linkfelder
-- 2 Langtextfelder
+- 1 Datum und ein Linkfeld
+- 1 Langtextfelder
 - 2 Dateifelder mit Mehrfachauswahl
-- 1 Kategorie (Seiten Filter) und 2 Kategorien (Universal)
+- 1 Kategorie (Seiten Filter)
 
 Installation
 ===

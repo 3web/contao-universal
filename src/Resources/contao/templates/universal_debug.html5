@@ -34,5 +34,5 @@
     <?php if ($this->pagination): ?>
         <?php echo $this->pagination; ?>
     <?php endif; ?>
-test
+
 </div>
