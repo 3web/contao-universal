@@ -1,7 +1,7 @@
 
-<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<div class="<?= $this->class; ?> block"<?= $this->cssID; ?><?php if ($this->style): ?> style="<?= $this->style; ?>"<?php endif; ?>>
     <?php if ($this->headline): ?>
-        <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+        <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
     <?php endif; ?>
 
     <?php if ($this->arrUniversalData): ?>
@@ -14,18 +14,18 @@
                             <?php if (strstr($key, 'image')): ?>
                                 <?php foreach ($val as $key => $image): ?>
                                     <?php if ($image != ''): ?>
-                                        <?php echo '<br>image ' . $key . ': ' . $image; ?>
+                                        <?= '<br>image ' . $key . ': ' . $image; ?>
                                         <div class="image_container">
-                                            <img src="<?php echo $this->getImage($image, '120', '70', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
+                                            <img src="<?= $this->getImage($image, '120', '70', 'proportional') ?>" alt="<?= $row['title_01']; ?>">
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php elseif ($key === 'published'): ?>
-                                <?php echo $key . ': ' . ($val ? '1' : '0') . '<br>'; ?>
+                                <?= $key . ': ' . ($val ? '1' : '0') . '<br>'; ?>
                             <?php elseif ($key === 'date'): ?>
-                                <?php echo $key . ': ' . $this->parseDate('d.m.Y H:i', $val) . '<br>'; ?>
+                                <?= $key . ': ' . $this->parseDate('d.m.Y H:i', $val) . '<br>'; ?>
                             <?php else: ?>
-                                <?php echo $key . ': ' . $val . '<br>'; ?>
+                                <?= $key . ': ' . $val . '<br>'; ?>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
@@ -35,7 +35,7 @@
         <?php endforeach; ?>
     <?php endif; ?>
     <?php if ($this->pagination): ?>
-        <?php echo $this->pagination; ?>
+        <?= $this->pagination; ?>
     <?php endif; ?>
 
 </div>
