@@ -8,6 +8,7 @@ Modul zum erfassen und ausgeben universellen Daten in Contao. Es können verschi
 - 2 Dateifelder mit Mehrfachauswahl
 - 1 Kategorie (Seiten Filter)
 
+
 Installation
 ===
 - Dateien hochladen -> system/modules/
