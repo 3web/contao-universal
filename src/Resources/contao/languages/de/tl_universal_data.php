@@ -40,7 +40,7 @@ $GLOBALS['TL_LANG']['tl_universal_data']['category_legend'] = 'Kategorie';
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_universal_data']['new']    = array('Neu ', 'Neuer Eintrag ');
+$GLOBALS['TL_LANG']['tl_universal_data']['new']    = array('Neuer Eintrag', 'Neuer Eintrag');
 $GLOBALS['TL_LANG']['tl_universal_data']['show']   = array('Details', 'Zeigt die Details von ID %s');
 $GLOBALS['TL_LANG']['tl_universal_data']['edit']   = array('Editieren ', 'Editiere ID %s');
 $GLOBALS['TL_LANG']['tl_universal_data']['cut']    = array('Verschieben ', 'Verschiebe ID %s');

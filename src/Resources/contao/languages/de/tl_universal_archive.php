@@ -30,7 +30,7 @@ $GLOBALS['TL_LANG']['tl_universal_archive']['title_legend'] = 'Titel';
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_universal_archive']['new']    = array('Neu', 'Neues Archiv');
+$GLOBALS['TL_LANG']['tl_universal_archive']['new']    = array('Neues Archiv', 'Neues Archiv');
 $GLOBALS['TL_LANG']['tl_universal_archive']['show']   = array('Details', 'Zeigt die Details von ID %s');
 $GLOBALS['TL_LANG']['tl_universal_archive']['edit']   = array('Editieren ', 'Editiere ID %s');
 $GLOBALS['TL_LANG']['tl_universal_archive']['cut']    = array('Verschieben ', 'Verschiebe ID %s');

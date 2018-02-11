@@ -101,7 +101,6 @@ class universalList extends \Module
         {
             $arrCount[$objCount->pid] = $objCount->cc;
         }
-
         
         /* category */
         $query_cat = ' SELECT id,title_01 FROM tl_universal_data WHERE 1  AND published = "1" ';
