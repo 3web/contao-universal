@@ -10,7 +10,7 @@
 
                 <?php if (strstr($row['class'], 'first')): ?>
                     <div class="universal_title">
-                        <h3> <?php echo $row['arc_title']; ?> (<?php echo $row['arc_count']; ?>)</h3>
+                        <h2> <?php echo $row['arc_title']; ?> (<?php echo $row['arc_count']; ?>)</h2>
                         <div> <?php echo nl2br($row['arc_description']); ?></div>
                     </div>
                 <?php endif; ?>
