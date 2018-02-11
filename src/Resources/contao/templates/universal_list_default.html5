@@ -1,41 +1,38 @@
 <div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
     <?php if ($this->headline): ?>
-        <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
-    <?php endif; ?>
+    <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+<?php echo '<pre>' . $this->showTemplateVars() . '</pre>'; ?>
+<?php if ($this->arrUniversalData): ?>
+    <?php foreach ($this->arrUniversalData as $key => $arc_row): ?>
+        <?php foreach ($arc_row as $row): ?>
 
-    <?php if ($this->arrUniversalData): ?>
-        <?php foreach ($this->arrUniversalData as $key => $arc_row): ?>
-            <?php foreach ($arc_row as $row): ?>
-
-                <?php if (strstr($row['class'], 'first')): ?>
-                    <div class="universal_title">
-                        <h2> <?php echo $row['arc_title']; ?> (<?php echo $row['arc_count']; ?>)</h2>
-                        <div> <?php echo nl2br($row['arc_description']); ?></div>
-                    </div>
-                <?php endif; ?>
-                <div class="universal_item <?php echo $row['class']; ?>">
-                    <div class="universal_date"><?php $this->parseDate("F y", $row['date']); ?></div>
-                    <?php if ($row['url_01'] != ''): ?>
-                        <a href="<?php echo $row['url_01']; ?>"<?php echo LINK_NEW_WINDOW; ?>>
-                        <?php endif; ?>
-                        <div class="universal_title"><?php echo $row['title_01']; ?></div>
-                        <?php if ($row['url_01'] != ''): ?>
-                        </a>
-                    <?php endif; ?>
-                    <?php if (is_array($row['image_01'])): ?>
-                        <?php foreach ($row['image_01'] as $image): ?>
-                            <?= ($row['url_01'] != '' ? '<a href="'.$row['url_01'].'"'. LINK_NEW_WINDOW.'>': ''); ?>
-                            <img src="<?php echo $this->getImage($image, '130', '120', 'center_center') ?>" alt="<?php echo $row['title_01']; ?>">
-                            <?= ($row['url_01'] != '' ? '</a>':''); ?>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                    <div class="universal_description"><?php echo nl2br($row['description_01']); ?></div>
+            <?php if (strstr($row['class'], 'first')): ?>
+                <div class="universal_title">
+                    <h2> <?php echo $row['arc_title']; ?> (<?php echo $row['arc_count']; ?>)</h2>
+                    <div> <?php echo nl2br($row['arc_description']); ?></div>
                 </div>
-            <?php endforeach; ?>
-            <hr>
+            <?php endif; ?>
+            <div class="universal_item <?php echo $row['class']; ?>">
+                <div class="universal_date"><?php $this->parseDate("F y", $row['date']); ?></div>
+                <?= ($row['url_01'] != '' ? '<a href="' . $row['url_01'] . '"' . LINK_NEW_WINDOW . '>' : ''); ?>
+                <div class="universal_title"><?php echo $row['title_01']; ?></div>
+                <?= ($row['url_01'] != '' ? '</a>' : ''); ?>
+                <?php if (is_array($row['image_01'])): ?>
+                    <?php foreach ($row['image_01'] as $image): ?>
+                        <?= ($row['url_01'] != '' ? '<a href="' . $row['url_01'] . '"' . LINK_NEW_WINDOW . '>' : ''); ?>
+                        <img src="<?php echo $this->getImage($image, '130', '120', 'center_center') ?>"
+                             alt="<?php echo $row['title_01']; ?>">
+                        <?= ($row['url_01'] != '' ? '</a>' : ''); ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <div class="universal_description"><?php echo nl2br($row['description_01']); ?></div>
+            </div>
         <?php endforeach; ?>
-    <?php endif; ?>
-    <?php if ($this->pagination): ?>
-        <?php echo $this->pagination; ?>
-    <?php endif; ?>
+        <hr>
+    <?php endforeach; ?>
+<?php endif; ?>
+<?php if ($this->pagination): ?>
+    <?php echo $this->pagination; ?>
+<?php endif; ?>
 </div>
